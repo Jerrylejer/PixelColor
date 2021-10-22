@@ -1,0 +1,69 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+  height: 100vh;
+  overflow: auto;
+}
+
+/* FORMULAIRE */
+
+.configuration {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  background-color: mediumslateblue;
+  margin-bottom: 50px;
+  background-image: url(/image/Antu_pixelart-trace.svg.png);
+}
+
+.input {
+  margin-top: -115px;
+  width: 150px;
+  height: 50px;
+  border: none;
+}
+
+.input:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-right: 1px solid;
+}
+
+.bouton {
+  margin-top: -115px;
+  width: 100px;
+  height: 52px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  margin-left: 1px;
+  background-color: orange;
+  color: white;
+}
+
+/* DIV PIXELCOLOR */
+
+#pixelColor {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GRILLE DE JEU */
+
+.lignes {
+  display: flex;
+  flex-direction: row;
+}
+
+.cases {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: maroon;
+}
