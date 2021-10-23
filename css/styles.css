@@ -24,6 +24,7 @@ body {
   width: 150px;
   height: 50px;
   border: none;
+  text-align: center;
 }
 
 .input:first-child {
@@ -66,4 +67,14 @@ body {
   height: 20px;
   border: 1px solid black;
   background-color: maroon;
+}
+
+.cases--white {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.cases--fof {
+  background-color: #ff00ff;
+  border: 1px solid black;
 }
