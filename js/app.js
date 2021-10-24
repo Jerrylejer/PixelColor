@@ -1,24 +1,22 @@
 // Tout d'abord il faut générer une grille de 8 cases x 8 cases
-
 // cette grille contient donc 8 lignes qui elles mêmes contiennent 8 cases
-
-//! CREATION D'UNE f POUR LA CREATION DE LA GRILLE
-
 // Je crée 2 variables qui me serviront de paramètres dans ma fonction de création de grille*
 // 1 paramLigne pour le nombre de lignes à créer
 // paramPixels pour le nombre de cases à créer
 // Par défaut je donne 8 lignes et 30px aux cases
 
-var app = {
-
-  
-}
+//? Je crée une variable pour définir le nombre de lignes et cases (qui sont les mêmes dans l'énoncé)
 //? Je dois récupérer la valeur de l'inputGrid ici
-var paramLignes = 8;
+//? => Récupérée grâce à la fonction "créationGrille" intégrée dans la fonction "créationFormulaire"
+var paramLignes = 0;
+//? Je crée une variable pour le nombre de Pixels
 //? Je dois récupérer la valeur de l'inputPixels ici
-var paramPixels = 30;
+//? => Récupérée grâce à la fonction "créationGrille" intégrée dans la fonction "créationFormulaire"
+var paramPixels = 0;
 
-var créationGrille = function () {
+//! CREATION D'UNE f POUR LA CREATION DE LA GRILLE
+
+var créationGrille = function (paramLignes, paramPixels) {
   // Je crée une boucle for pour répéter la création de lignes
   for (i = 0; i < paramLignes; i++) {
     // je sélectionne tout d'abordla div parent "pixelColor" dans laquelle va prendre place le jeu
@@ -53,10 +51,10 @@ var créationGrille = function () {
 };
 
 //! CREATION DE DEUX CHAMPS ET UN BOUTON DE VALIDATION DANS LE FORMULAIRE
-// Je sélectionne tout d'abord la div parent "configuration" pour y insérer mes inputs et btn
-var config = document.querySelector(".configuration");
 
 var creationFormulaire = function () {
+  // Je sélectionne tout d'abord la div parent "configuration" pour y insérer mes inputs et btn
+  var config = document.querySelector(".configuration");
   //? Je crée le premier champs (input) qui concerne la taille de la grille
   var inputGrid = document.createElement("input");
   // Je lui donne une class "input"
@@ -99,6 +97,7 @@ var creationFormulaire = function () {
   // Je le place dans l'élément parent
   config.appendChild(inputPixels);
 
+  //! BOUTON ET VALIDATION DU FORMULAIRE
   //? Je crée le bouton de validation pour valider la saisie de l'utilisateur
   var btnValid = document.createElement("button");
   // Je lui donne une class "submit"
@@ -108,18 +107,27 @@ var creationFormulaire = function () {
   // Je le place dans l'élément parent
   config.appendChild(btnValid);
 
-  //?
-  config.addEventListener("submit", function (event) {
-    event.preventDefault();
-    paramLignes = Number(inputGrid.value);
-    paramPixels = Number(inputPixels.value);
-    console.log(paramLignes, paramPixels);
-  });
+  //? Je soumets le formulaire en imputant à mes variables principales les valeurs des 2 inputs
+  //? inputGrid & inputPixels
+  //? Comment ? => je rapelle ma fonction "créationGrille" qui peut "faire remonter" ces 2 valeurs
+  //? aux 2 variables qui sont pourtant en dehors de la fonction !
+  function validationFormulaire() {
+    config.addEventListener("submit", function (event) {
+      event.preventDefault();
+      paramLignes = Number(inputGrid.value);
+      paramPixels = Number(inputPixels.value);
+      //console.log(paramLignes, paramPixels);
+      //! J'appelle la f créationGrille déjà paramétrée plus haut !!!!
+      //! Attention cela m'a bloqué un grand moment !!!
+      créationGrille(paramLignes, paramPixels);
+    });
+  }
+  validationFormulaire();
 };
 creationFormulaire();
-créationGrille(paramLignes, paramPixels);
 
 //! CREATION D'UNE f QUI AU CLICK CHANGE LA COULEUR DE FOND DES PIXELS
+//? Utilisation d'une fonction, de l'event "Event.target", d'une condition "if"
 
 function toggleCases(event) {
   // Mon eventListener et ma fonction toggle sont déjà en écoute au moment de la création des div "cases"
